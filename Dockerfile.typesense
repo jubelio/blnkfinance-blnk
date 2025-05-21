@@ -1,0 +1,12 @@
+# Menggunakan image resmi Typesense versi 0.23.1
+FROM typesense/typesense:0.23.1
+
+# Membuat direktori untuk data
+RUN mkdir -p /data
+
+# Mengatur command default untuk menjalankan Typesense
+# Anda dapat menimpa nilai ini dengan environment variables atau perintah di Kubernetes
+CMD ["typesense-server", \
+    "--data-dir", "/data", \
+    "--api-key=blnk-api-key", \
+    "--listen-port", "8108"]
