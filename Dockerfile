@@ -19,6 +19,6 @@ COPY --from=build-env /blnk /usr/local/bin/blnk
 
 RUN chmod +x /usr/local/bin/blnk
 
-CMD ["blnk", "start"]
+CMD blnk migrate up && blnk start
 
 EXPOSE 8080
