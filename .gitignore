@@ -7,3 +7,4 @@ blnk.json
 promtail
 dump.rdb
 heartbeat.db
+envar.sh

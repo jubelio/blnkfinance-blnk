@@ -12,6 +12,7 @@ import (
 	"github.com/jerry-enebeli/blnk/config"
 	"github.com/jerry-enebeli/blnk/database"
 	"github.com/stretchr/testify/assert"
+	"go.elastic.co/apm/module/apmgin/v2"
 )
 
 func setupBlnk() (*blnk.Blnk, error) {
@@ -516,6 +517,7 @@ func TestAuthMiddleware_Authenticate(t *testing.T) {
 
 			// Create a new router and middleware
 			router := gin.New()
+			router.Use(apmgin.Middleware(router))
 			authMiddleware := NewAuthMiddleware(blnk)
 
 			// Store test configuration
