@@ -1472,14 +1472,16 @@ func (l *Blnk) QueueTransaction(ctx context.Context, transaction *model.Transact
 	// If SkipQueue is true, process synchronously
 	if transaction.SkipQueue {
 		_, err := l.processTxns(ctx, transaction, transactions, originalTxnID, originalRef)
-		retry := 0
+		retryCount := 0
+		maxRetries := 10
 		if err != nil {
-			isLocked := strings.Contains(err.Error(), "failed to acquire lock")
-			for isLocked && retry < 10 {
+			for strings.Contains(err.Error(), "failed to acquire lock") && retryCount < maxRetries {
+				retryCount++
 				time.Sleep(2 * time.Second)
-				_, err := l.processTxns(ctx, transaction, transactions, originalTxnID, originalRef)
-				if err != nil {
-					retry += 1
+				_, err = l.processTxns(ctx, transaction, transactions, originalTxnID, originalRef)
+
+				if err == nil {
+					break
 				}
 			}
 		}
