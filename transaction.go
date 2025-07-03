@@ -30,6 +30,7 @@ import (
 	"github.com/jerry-enebeli/blnk/config"
 	redlock "github.com/jerry-enebeli/blnk/internal/lock"
 	"github.com/jerry-enebeli/blnk/internal/notification"
+	"go.elastic.co/apm/module/apmlogrus/v2"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 
@@ -52,6 +53,10 @@ const (
 	StatusCommit    = "COMMIT"
 	StatusRejected  = "REJECTED"
 )
+
+func init() {
+	logrus.AddHook(&apmlogrus.Hook{})
+}
 
 // getTxns is a function type that retrieves a batch of transactions based on the parent transaction ID, batch size, and offset.
 //
@@ -1467,6 +1472,19 @@ func (l *Blnk) QueueTransaction(ctx context.Context, transaction *model.Transact
 	// If SkipQueue is true, process synchronously
 	if transaction.SkipQueue {
 		_, err := l.processTxns(ctx, transaction, transactions, originalTxnID, originalRef)
+		retryCount := 0
+		maxRetries := 10
+		if err != nil {
+			for strings.Contains(err.Error(), "failed to acquire lock") && retryCount < maxRetries {
+				retryCount++
+				time.Sleep(2 * time.Second)
+				_, err = l.processTxns(ctx, transaction, transactions, originalTxnID, originalRef)
+
+				if err == nil {
+					break
+				}
+			}
+		}
 		if err != nil {
 			span.RecordError(err)
 			return nil, err
