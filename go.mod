@@ -1,6 +1,6 @@
 module github.com/jerry-enebeli/blnk
 
-go 1.23.4
+go 1.24.0
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2
@@ -32,6 +32,7 @@ require (
 	github.com/texttheater/golang-levenshtein/levenshtein v0.0.0-20200805054039-cae8b0eaed6c
 	github.com/typesense/typesense-go v1.1.0
 	github.com/wacul/ptr v1.0.0
+	go.elastic.co/apm/module/apmotel/v2 v2.7.1
 	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.60.0
 	go.opentelemetry.io/otel v1.35.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.35.0
@@ -42,15 +43,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.35.0
 )
 
-require (
-	github.com/elastic/go-licenser v0.3.1 // indirect
-	github.com/jcchavezs/porto v0.1.0 // indirect
-	github.com/santhosh-tekuri/jsonschema v1.2.4 // indirect
-	go.elastic.co/apm v1.15.0 // indirect
-	go.elastic.co/apm/module/apmotel/v2 v2.7.1 // indirect
-	go.opentelemetry.io/otel/sdk/metric v1.34.0 // indirect
-	golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5 // indirect
-)
+require go.opentelemetry.io/otel/sdk/metric v1.34.0 // indirect
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
@@ -78,7 +71,7 @@ require (
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.1 // indirect
-	github.com/hibiken/asynqmon v0.7.2 // indirect
+	github.com/hibiken/asynqmon v0.7.2
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/joeshaw/multierror v0.0.0-20140124173710-69b34d4ec901 // indirect
@@ -108,7 +101,7 @@ require (
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/yuin/gopher-lua v1.1.1 // indirect
 	github.com/zeebo/blake3 v0.2.4 // indirect
-	go.elastic.co/apm/module/apmgin/v2 v2.7.1 // indirect
+	go.elastic.co/apm/module/apmgin/v2 v2.7.1
 	go.elastic.co/apm/module/apmhttp/v2 v2.7.1 // indirect
 	go.elastic.co/apm/module/apmlogrus/v2 v2.7.1
 	go.elastic.co/apm/v2 v2.7.1 // indirect
@@ -121,14 +114,14 @@ require (
 	go.uber.org/zap v1.27.0 // indirect
 	go.uber.org/zap/exp v0.3.0 // indirect
 	golang.org/x/arch v0.14.0 // indirect
-	golang.org/x/crypto v0.36.0 // indirect
-	golang.org/x/mod v0.24.0 // indirect
-	golang.org/x/net v0.38.0 // indirect
-	golang.org/x/sync v0.12.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/mod v0.29.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	golang.org/x/time v0.8.0 // indirect
-	golang.org/x/tools v0.31.0 // indirect
+	golang.org/x/tools v0.38.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250313205543-e70fdf4c4cb4 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250313205543-e70fdf4c4cb4 // indirect
 	google.golang.org/grpc v1.71.0 // indirect
